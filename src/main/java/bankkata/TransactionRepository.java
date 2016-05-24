@@ -1,12 +1,21 @@
 package bankkata;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class TransactionRepository {
 
-    public void addDeposit(int amount) {
-        throw new UnsupportedOperationException();
+    private Clock clock;
+    private List<Transaction> transactions = new ArrayList();
 
+    public TransactionRepository(Clock clock) {
+        this.clock = clock;
+    }
+
+    public void addDeposit(int amount) {
+        Transaction depositTransaction = new Transaction(clock.todayDateAsString(), amount);
+        transactions.add(depositTransaction);
     }
 
     public void addWithdrawal(int amount) {
@@ -14,7 +23,6 @@ public class TransactionRepository {
     }
 
     public List<Transaction> allTransactions() {
-        throw new UnsupportedOperationException();
-
+        return Collections.unmodifiableList(transactions);
     }
 }
