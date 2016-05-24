@@ -2,13 +2,13 @@ package feature;
 
 import bankkata.Account;
 import bankkata.Console;
+import bankkata.StatementPrinter;
 import bankkata.TransactionRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.inOrder;
@@ -23,7 +23,8 @@ public class PrintStatementFeature {
     @Before
     public void initialize(){
         TransactionRepository transactionRepository = new TransactionRepository();
-        account = new Account(transactionRepository);
+        StatementPrinter statementPrinter = new StatementPrinter();
+        account = new Account(transactionRepository, statementPrinter);
     }
 
     @Test public void
