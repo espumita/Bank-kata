@@ -8,6 +8,7 @@ import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.inOrder;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -27,6 +28,8 @@ public class PrintStatementFeature {
 
     @Test public void
     print_statement_containing_all_transactions() {
+        given(clock.todayDateAsString()).willReturn("01/04/2014","02/04/2014","10/04/2014");
+
         account.deposit(1000);
         account.withdraw(100);
         account.deposit(500);
